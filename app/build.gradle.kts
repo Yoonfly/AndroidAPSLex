@@ -1,3 +1,4 @@
+import org.gradle.kotlin.dsl.debugImplementation
 import java.io.ByteArrayOutputStream
 import java.io.FileInputStream
 import java.text.SimpleDateFormat
@@ -122,7 +123,6 @@ fun getKeyPassword(): String {
 android {
 
     namespace = "app.aaps"
-    ndkVersion = Versions.ndkVersion
 
     defaultConfig {
         minSdk = Versions.minSdk
@@ -245,10 +245,10 @@ dependencies {
     implementation(project(":pump:equil"))
     implementation(project(":pump:insight"))
     implementation(project(":pump:medtronic"))
-    implementation(project(":pump:pump-common"))
-    implementation(project(":pump:omnipod-common"))
-    implementation(project(":pump:omnipod-eros"))
-    implementation(project(":pump:omnipod-dash"))
+    implementation(project(":pump:common"))
+    implementation(project(":pump:omnipod:common"))
+    implementation(project(":pump:omnipod:eros"))
+    implementation(project(":pump:omnipod:dash"))
     implementation(project(":pump:rileylink"))
     implementation(project(":pump:virtual"))
     implementation(project(":workflow"))
@@ -257,6 +257,8 @@ dependencies {
     androidTestImplementation(project(":shared:tests"))
     androidTestImplementation(libs.androidx.test.rules)
     androidTestImplementation(libs.org.skyscreamer.jsonassert)
+
+    debugImplementation(libs.com.squareup.leakcanary.android)
 
 
     kspAndroidTest(libs.com.google.dagger.android.processor)
